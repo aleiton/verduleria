@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Item from "./Item";
 import Total from "./Total";
 
-const List = () => {
+const ListPrices = () => {
   const [bananas, setBananas] = useState(0);
   const [manzanas, setManzanas] = useState(0);
   const [sandias, setSandias] = useState(0);
@@ -22,48 +22,35 @@ const List = () => {
     setKiwis(Number(e.target.value));
   };
 
-  const calcularPrice = () => {
-    const bananaTotal = bananas * 15;
-    const manzanaTotal = manzanas * 10;
-    const sandiaTotal = sandias * 60;
-    const kiwiTotal = kiwis * 20;
-
-    return (bananaTotal + manzanaTotal + sandiaTotal + kiwiTotal);
-  }
-
   return (
     <div className="list">
-      <h1>Carrito: </h1>
+      <h1>Precios $$$: </h1>
       <Item
         name="Bananas 🍌"
-        quantity={bananas}
         price={15}
         onChange={updateBananas}
+        onlyPrice
       />
       <Item
         name="Manzanas 🍎"
-        quantity={manzanas}
         price={10}
         onChange={updateManzanas}
+        onlyPrice
       />
       <Item
         name="Sandia 🍉"
-        quantity={sandias}
         price={60}
         onChange={updateSandias}
+        onlyPrice
       />
       <Item
         name="Kiwi 🥝"
-        quantity={kiwis}
         price={20}
         onChange={updateKiwis}
-      />
-      <Total
-        quantity={bananas + manzanas + sandias + kiwis}
-        price={calcularPrice()}
+        onlyPrice
       />
     </div>
   );
 }
 
-export default List;
+export default ListPrices;

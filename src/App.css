@@ -12,6 +12,15 @@
   border-radius: 4px;
 }
 
+nav {
+  background: darkgreen;
+  color: white;
+}
+
+nav li {
+  cursor: pointer;
+}
+
 .container header {
   font-weight: bold;
   font-size: 2rem;
