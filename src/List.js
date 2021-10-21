@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Item from "./Item";
 import Total from "./Total";
 
-const List = () => {
+const List = ({ onClick }) => {
   const [bananas, setBananas] = useState(0);
   const [manzanas, setManzanas] = useState(0);
   const [sandias, setSandias] = useState(0);
@@ -22,6 +22,33 @@ const List = () => {
     setKiwis(Number(e.target.value));
   };
 
+  const data = [
+    {
+      name: "Bananas 🍌",
+      price: 15,
+      quantity: bananas,
+      onChange: updateBananas,
+    },
+    {
+      name: "Manzanas 🍎",
+      price: 10,
+      quantity: manzanas,
+      onChange: updateManzanas,
+    },
+    {
+      name: "Sandia 🍉",
+      price: 60,
+      quantity: sandias,
+      onChange: updateSandias,
+    },
+    {
+      name: "Kiwi 🥝",
+      price: 20,
+      quantity: kiwis,
+      onChange: updateKiwis,
+    },
+  ]
+
   const calcularPrice = () => {
     const bananaTotal = bananas * 15;
     const manzanaTotal = manzanas * 10;
@@ -34,34 +61,22 @@ const List = () => {
   return (
     <div className="list">
       <h1>Carrito: </h1>
-      <Item
-        name="Bananas 🍌"
-        quantity={bananas}
-        price={15}
-        onChange={updateBananas}
-      />
-      <Item
-        name="Manzanas 🍎"
-        quantity={manzanas}
-        price={10}
-        onChange={updateManzanas}
-      />
-      <Item
-        name="Sandia 🍉"
-        quantity={sandias}
-        price={60}
-        onChange={updateSandias}
-      />
-      <Item
-        name="Kiwi 🥝"
-        quantity={kiwis}
-        price={20}
-        onChange={updateKiwis}
-      />
+      {data.map(fruit => {
+        return (
+          <Item
+            name={fruit.name}
+            quantity={fruit.quantity}
+            price={fruit.price}
+            onChange={fruit.onChange}
+            key={fruit.name}
+          />
+        );
+      })}
       <Total
         quantity={bananas + manzanas + sandias + kiwis}
         price={calcularPrice()}
       />
+      <button onClick={onClick}>Go Checkout</button>
     </div>
   );
 }
