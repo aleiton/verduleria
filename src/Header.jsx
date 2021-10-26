@@ -1,22 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import cartLogo from "./assets/cart.png";
 import priceLogo from "./assets/price.png";
 
-const Header = ({ onClick, children }) => {
+const Header = ({ children }) => {
   return (
     <nav>
       <header>{children}</header>
       <ul>
-        <li
-          onClick={() => onClick('cart')}
-        >
-        <img src={cartLogo}/>
-        Carrito</li>
-        <li
-          onClick={() => onClick('price')}
-        >
-        <img src={priceLogo}/>
-        Precios</li>
+        <Link to="/cart">
+          <img src={cartLogo}/>
+          Carrito
+        </Link>
+        <Link to="/price">
+          <img src={priceLogo}/>
+          Precios
+        </Link>
       </ul>
     </nav>
   );

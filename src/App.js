@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import { 
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -11,26 +17,27 @@ function App() {
   const [page, setPage] = useState('cart');
   /* const [VALOR, FUNCION_ACTUALIZAR_VALOR] = useState(VALOR_INICIAL); */
 
-  const route = () => {
-    switch(page) {
-      case 'cart':
-        return <List onClick={() => setPage('checkout')}/>;
-      case 'price':
-        return <ListPrices />
-      case 'checkout':
-        return <Checkout />
-      default:
-        return null;
-    };
-  };
-
   return (
-    <div className="app">
-      <Header onClick={(value) => setPage(value)}>Verduleria</Header>
-      <div className="container">
-        {route()}
+    <Router>
+      <div className="app">
+        <Header>Verduleria</Header>
+        <div className="container">
+          <Switch>
+            <Route path="/cart">
+              <List onClick={() => setPage('checkout')}/>
+            </Route>
+            <Route path="/price">
+              <ListPrices />
+            </Route>
+            <Route path="/checkout">
+              <Checkout />
+            </Route>
+          </Switch>
+        </div>
       </div>
-    </div>
+
+
+    </Router>
   );
 }
 

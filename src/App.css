@@ -39,15 +39,16 @@ nav {
   margin-bottom: auto;
 }
 
-nav li {
+nav a {
   cursor: pointer;
   display: flex;
   align-items: center;
   padding: 0.25rem;
   border-radius: 0.25rem;
+  text-decoration: none;
 }
 
-nav li img {
+nav a img {
   width: 1.5rem;
 }
 
@@ -58,7 +59,7 @@ nav ul {
   gap: 0.5rem;
 }
 
-nav li:hover {
+nav a:hover {
   opacity: 0.8;
   background-color: #52154e;
   color: #e8e9f3;
