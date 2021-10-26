@@ -1,54 +1,37 @@
 import React, { useState } from "react";
 
+import { products } from "./services/products";
 import Item from "./Item";
 import Total from "./Total";
 
 const ListPrices = () => {
-  const [bananas, setBananas] = useState(0);
-  const [manzanas, setManzanas] = useState(0);
-  const [sandias, setSandias] = useState(0);
-  const [kiwis, setKiwis] = useState(0);
+  const [fruits, setFruits] = useState(products);
 
-  const updateBananas = (e) => {
-    setBananas(Number(e.target.value));
-  };
-  const updateManzanas = (e) => {
-    setManzanas(Number(e.target.value));
-  };
-  const updateSandias = (e) => {
-    setSandias(Number(e.target.value))
-  };
-  const updateKiwis = (e) => {
-    setKiwis(Number(e.target.value));
-  };
+  const updateFruit = (e) => {
+    const { name, value } = e.target;
+
+    const updatedFruit = fruits.map(
+      fruit => fruit.name.trim() === name.trim() ? { ...fruit, price: Number(value) } : fruit
+    );
+    setFruits(updatedFruit);
+  }
+
+  console.table(fruits);
 
   return (
     <div className="list">
-      <h1>Precios $$$: </h1>
-      <Item
-        name="Bananas 🍌"
-        price={15}
-        onChange={updateBananas}
-        onlyPrice
-      />
-      <Item
-        name="Manzanas 🍎"
-        price={10}
-        onChange={updateManzanas}
-        onlyPrice
-      />
-      <Item
-        name="Sandia 🍉"
-        price={60}
-        onChange={updateSandias}
-        onlyPrice
-      />
-      <Item
-        name="Kiwi 🥝"
-        price={20}
-        onChange={updateKiwis}
-        onlyPrice
-      />
+      <h1>Precios $: </h1>
+      {fruits.map(fruit => {
+        return (
+          <Item
+            name={fruit.name}
+            quantity={fruit.quantity}
+            price={fruit.price}
+            onChange={updateFruit}
+            onlyPrice
+          />
+        );
+      })}
     </div>
   );
 }

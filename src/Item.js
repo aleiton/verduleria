@@ -1,15 +1,13 @@
 import React from "react";
 
 const Item = ({ name, quantity, price, onChange, onlyPrice }) => {
-
-  const formattedPrice = `$${price} c/u`;
-  
   if (onlyPrice) {
     return (
       <div className="list-item">
         <span>{name}</span>
         <div className="list-item-info">
           <input
+            name={name}
             value={price}
             onChange={onChange}
           />
@@ -18,11 +16,14 @@ const Item = ({ name, quantity, price, onChange, onlyPrice }) => {
     );
   }
 
+  const formattedPrice = `$${price} c/u`;
+
   return (
     <div className="list-item">
       <span>{name}</span>
       <div className="list-item-info">
         <input
+          name={name}
           value={quantity}
           onChange={onChange}
         />

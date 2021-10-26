@@ -2,6 +2,7 @@
   display: flex;
   flex-flow: column;
   gap: 0.5rem;
+  position: relative;
 }
 
 .checkout div {
@@ -11,8 +12,17 @@
   width: 100%;
 }
 
+.checkout label {
+  width: 30%;
+}
+
+.checkout input {
+  width: 25%;
+}
+
 .checkout button {
   width: 4rem;
   margin: auto;
+  margin-top: 3rem;
   cursor: pointer;
 }
