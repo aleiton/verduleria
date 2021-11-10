@@ -1,13 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import Item from "./Item";
 import Total from "./Total";
 
-const List = ({ onClick }) => {
+const List = () => {
   const [bananas, setBananas] = useState(0);
   const [manzanas, setManzanas] = useState(0);
   const [sandias, setSandias] = useState(0);
   const [kiwis, setKiwis] = useState(0);
+  const history = useHistory();
+  /* useEffect(FUNCION_EFECTO_SECUNDARIO/CALLBACK/CB, ARRAY_DE_DEPENDENCIA); */
+
+  useEffect(() => {
+    console.log("MOUNT: HAGO UN EFECTO");
+  }, []);
+
+  useEffect(() => {
+    console.log("MOUNT / UPDATE: HAGO OTRO EFECTO", manzanas);
+  }, [manzanas]);
+
+  useEffect(() => {
+    // return () => console.log("UNMOUNT: LIMPIO LOS EFECTOS / HAGO ALGO");
+  }, []);
+
 
   const updateBananas = (e) => {
     setBananas(Number(e.target.value));
@@ -21,6 +37,8 @@ const List = ({ onClick }) => {
   const updateKiwis = (e) => {
     setKiwis(Number(e.target.value));
   };
+
+  console.log("ME DIBUJO");
 
   const data = [
     {
@@ -58,6 +76,10 @@ const List = ({ onClick }) => {
     return (bananaTotal + manzanaTotal + sandiaTotal + kiwiTotal);
   }
 
+  const handleCheckout = () => {
+    history.push("/checkout");
+  };
+
   return (
     <div className="list">
       <h1>Carrito: </h1>
@@ -76,7 +98,7 @@ const List = ({ onClick }) => {
         quantity={bananas + manzanas + sandias + kiwis}
         price={calcularPrice()}
       />
-      <button onClick={onClick}>Go Checkout</button>
+      <button onClick={handleCheckout}>Go Checkout</button>
     </div>
   );
 }

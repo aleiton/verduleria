@@ -67,6 +67,10 @@ nav a:hover {
 }
 
 .list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   width: calc(100% - 4rem);
   height: calc(100% - 4rem);
   background-color: #e8e9f3;
@@ -105,5 +109,11 @@ nav a:hover {
 
 button { 
   cursor: pointer;
+}
+
+.spinner {
+  width: 5rem;
+  height: 5rem;
+  margin: auto;
 }
 

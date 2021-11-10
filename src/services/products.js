@@ -1,23 +1,12 @@
-export const products = [
-  {
-    name: "Bananas 🍌",
-    price: 15,
-    quantity: 0,
-  },
-  {
-    name: "Manzanas 🍎",
-    price: 10,
-    quantity: 0,
-  },
-  {
-    name: "Sandia 🍉",
-    price: 60,
-    quantity: 0,
-  },
-  {
-    name: "Kiwi 🥝",
-    price: 20,
-    quantity: 0,
-  },
-];
+export const getFruits = async () => {
+  try {
+    const response = await fetch('http://localhost:3000/fruits')
+    const result = await response.json();
+
+    return { data: result, error: null };
+  } catch (error) {
+
+    return { data: null, error} ;
+  }
+}
 

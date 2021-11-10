@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom";
 
 import logo from './logo.svg';
@@ -14,8 +15,8 @@ import ListPrices from "./ListPrices";
 import Checkout from "./Checkout";
 
 function App() {
-  const [page, setPage] = useState('cart');
   /* const [VALOR, FUNCION_ACTUALIZAR_VALOR] = useState(VALOR_INICIAL); */
+
 
   return (
     <Router>
@@ -23,8 +24,11 @@ function App() {
         <Header>Verduleria</Header>
         <div className="container">
           <Switch>
+            <Route exact path="/">
+              <Redirect to="/cart" />
+            </Route>
             <Route path="/cart">
-              <List onClick={() => setPage('checkout')}/>
+              <List />
             </Route>
             <Route path="/price">
               <ListPrices />
@@ -32,10 +36,12 @@ function App() {
             <Route path="/checkout">
               <Checkout />
             </Route>
+            <Route path="/*">
+              <h1>404 Page Not Found</h1>
+            </Route>
           </Switch>
         </div>
       </div>
-
 
     </Router>
   );
